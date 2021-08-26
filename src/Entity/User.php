@@ -12,30 +12,30 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="`user`")
  */
 // class User implements UserInterface
-class User implements BaseUser
+class User extends BaseUser
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
+    // /**
+    //  * @ORM\Column(type="string", length=180, unique=true)
+    //  */
+    // protected $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    // /**
+    //  * @ORM\Column(type="json")
+    //  */
+    // protected $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password;
+    // /**
+    //  * @var string The hashed password
+    //  * @ORM\Column(type="string")
+    //  */
+    // protected $password;
 
     public function getId(): ?int
     {
@@ -47,7 +47,7 @@ class User implements BaseUser
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail($email): self
     {
         $this->email = $email;
 
@@ -91,7 +91,7 @@ class User implements BaseUser
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword($password): self
     {
         $this->password = $password;
 

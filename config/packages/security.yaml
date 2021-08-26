@@ -6,12 +6,12 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        # app_user_provider:
-        #     entity:
-        #         class: App\Entity\User
-        #         property: email
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -32,20 +32,20 @@ security:
             pattern: ^/api/login
             stateless: true
             anonymous: true
-            json_login:
-                check_path: /api/login_check
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            # json_login:
+            #     check_path: /api/login_check
+            #     success_handler: lexik_jwt_authentication.handler.authentication_success
+            #     failure_handler: lexik_jwt_authentication.handler.authentication_failure
             form_login:
                 provider: fos_userbundle
                 check_path:               /api/login_check
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
 
-        api:
-            guard:
-                authenticators:
-                    - 'lexik_jwt_authentication.jwt_token_authenticator'
+        # api:
+            # guard:
+            #     authenticators:
+            #         - 'lexik_jwt_authentication.jwt_token_authenticator'
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -59,3 +59,7 @@ security:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
