@@ -17,14 +17,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
-    /**
-     * @Route("/api/login_check2", name="login_check", methods={"GET"})
-     */
-    public function api_check(): Response
-    {
-        return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
 }
