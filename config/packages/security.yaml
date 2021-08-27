@@ -12,6 +12,15 @@ security:
                 property: email
         fos_userbundle:
             id: fos_user.user_provider.username_email
+        # in_memory:
+            # memory:
+            #     users:
+            #         wajdi:
+            #             password: wajdi
+            #             roles: 'ROLE_USER'
+            #         aymen:
+            #             password: aymen
+            #             roles: 'ROLE_ADMIN'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
